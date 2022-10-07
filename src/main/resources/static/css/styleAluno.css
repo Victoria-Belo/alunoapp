@@ -1,0 +1,84 @@
+@charset "ISO-8859-1";
+
+#alunos {
+	/*imagem*/
+	
+	width:1055px;
+	height:47%;
+	padding:7px;
+	opacity: 0.9;
+	
+	
+}
+
+#container_imagem{
+    position: relative;
+    margin-right: 0%;
+	margin-left: 0%;
+	padding-left:4px;
+	padding-right:99px;
+	left:0px;
+	top:15px;
+	z-index:-1px;
+	
+	
+}
+
+#texto {
+  color:#F8F9F9 ;
+  position: absolute;
+  font-size: 60px;
+  left: 350px;
+  top: 135px;
+  z-index:1;
+}
+
+
+
+#textoLista {
+  color:#F8F9F9 ;
+  position: absolute;
+  font-size: 50px;
+  left: 340px;
+  top: 135px;
+  z-index:1;
+}
+
+
+#button_cancelar{
+	top:-33px;
+	left:160px;
+	
+}
+
+a {
+	 text-decoration: none; 
+     color:pink; 
+	 }
+
+/******* [INICIO] PAGINA: LISTA DE ALUNOS REGISTRADOS ******/	 
+#i_delete:hover {
+   color: #f44336;
+}
+
+ 
+#i_edit:hover {
+   color: #f44336;
+}
+
+#icon_book{
+	
+	 margin-left:-12px;
+}
+
+#label_book{
+	margin-left:35px;
+}
+#curso{
+	display: block; 
+	margin-top:-2px; 
+	margin-left:180px;
+	
+}
+
+/******* [FIM] PAGINA: LISTA DE ALUNOS REGISTRADOS ******/	

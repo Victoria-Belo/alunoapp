@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+	
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		rel="stylesheet">
+	
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	
+	<!-- POR SER MVC PAGE, PRECISEI UTILIZAR DESSA FORMA PARA FUNCIONAR  -->
+	<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+	
+	<link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" />	
+	<link rel="stylesheet" th:href="@{/css/materialize.min.css}" media="screen,projection"/>	
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/css/styleAluno.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/styleAnimation.css}">	
+	<meta charset="UTF-8" />	
+	<title> Alterar | Estudante </title>	
+</head>
+
+<body bgcolor="#90caf9">
+	<nav>
+	  <div class="nav-wrapper  #212121 grey darken-4">			
+		 <a href="/ " class="brand-logo center"><i class="large material-icons">local_library</i>MindZone</a>
+	  </div>
+	</nav>		
+	<div class="container">	 	        
+	  <div class="row">	
+	    <div class="container" id="container_imagem"> 
+	       <label id="textoLista"> PESQUISA </label>
+           <img  class="materialboxed" th:src="@{/images/01_students.jpg}" id="alunos">
+         </div>
+	     <div class="col s12 m15">	              
+	       <div class="card-panel large">       
+     		 <!-- INICIO FORM -->		
+			  <div class="row">		
+				 <div class="card-panel large"> 	 	 
+						<div class="col s12 m5" style="background-color:#e0e0e0; 
+												border-radius: 5px;
+												border-style: solid; 
+												border-width: 1px 1px; 
+												border-color:#9e9e9e; ">
+						 <form th:action="@{/curso/busca}" method="get">						
+  							 <input type="text" name="nome_curso" maxlength= 20; placeholder="Busque por nome do curso" />  	
+  							 <button class="btn-floating waves-effect waves-light btn-small" type="submit" name="action" style="left:345px; top:-5px;">
+   								<i class="material-icons">search</i>
+  							</button>	  								
+						 </form>
+						</div>									
+		     		 <table class="highlight bordered" id="lista_curso">
+		     			<thread>
+		     			<tr>
+		     			  <th>NOME</th>	
+		     			  <th>DESCRICAO</th>	
+		     			  <th>HORAS</th>
+		     			  
+		     			  		     			  
+		     			</tr>
+		     			</thread>
+		     			<tbody>
+		     			<tr th:each="curso : ${curso}"> 			
+			     			  <td><span th:text="${curso.nome}" ></span></td>
+			     			  <td><span th:text="${curso.descricao}"></span></td>
+			     			  <td><span th:text="${curso.periodo}"></span></td>
+			     			   	     			  
+			     			 
+		     			  </tr>				
+		     			</tbody>      			 	
+		     		 </table><br>  
+			<div class="container center" id="mensagem"> </div>
+			 <a href="/ ">
+			  <button class="btn waves-effect waves-light #f44336 red btn-small" name="action">VOLTAR
+			  	<i class="material-icons large right">keyboard_backspace</i>
+			  </button>
+			 </a>											
+			 </div>						
+			</div><!--FIM CLASS C/ FORM -->				
+		</div><!-- class row CARD end -->	        
+	  </div><!-- class-card-panel teal end -->
+    </div><!-- class-col s12 m5 -end- -->
+    <ul class="circles" style= "z-index:-1px;">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>		
+  </div><!-- class-container-end -->	
+  <footer class="page-footer #eceff1 blue-grey lighten-5">
+	<div class="footer-copyright  #212121 grey darken-4">
+		<div class="container center">
+		  © 2022 Victória C. Belo 
+		  <a href="https://github.com/Victoria-Belo"><i style="padding:12px; font-size:24px" class="fa">&#xf09b;</i></a>
+		</div>		
+	</div>
+  </footer>
+	<!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript">
+  	 let x =  document.getElementById("lista_curso").rows.length;
+	 console.log(x)
+
+  	 
+  	 testar()
+  	 function testar(){
+  		if (x < 2){
+  	  		 //console.log(`conteudo: ` + tbl + ` tipo: ` + typeof(x))
+  	  		 let resposta = document.getElementById("mensagem").innerText = "Curso não encontrado!";
+  	  		 console.log(resposta)
+  	  	 }else{
+  	  	    let resposta = document.getElementById("mensagem").innerText = " ";  	  		 
+  	  	 }  	
+  	 }
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+
+html {
+	    height: 100%;
+	    min-height: 100%;
+ }
+		
+body {
+ 	font-family: 'Exo', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background:#1a237e;  
+}
+
+footer {
+    margin-top: auto;
+}		     
+          
+
+a {
+	 text-decoration: none; 
+     color: black; 
+ }   
+         
+h1 {
+	text-align:center;
+	margin-top: 0;
+	z-index:2px;
+	
+	
+} 
+
+#sideNav{
+	
+	color:white; 
+	padding-left:20px; 
+	border-bottom:1px solid grey;
+
+	
+}
+
+#Logo{
+	background: -webkit-linear-gradient(#eee, #333); 
+	-webkit-background-clip: text; 
+	-webkit-text-fill-color: transparent;
+	
+}
+/******/
+
+

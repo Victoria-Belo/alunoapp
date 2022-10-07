@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://thymeleaf.org">
+
+<head>
+	 <meta charset="UTF-8"/>
+</head>
+
+<body>
+	<div class= "#ef5350 red lighten-1" 
+	role="alert" th:if="${not #lists.isEmpty(mensagem)}" id="principal">
+		<center><b><span th:text="${mensagem}"></span></b></center>
+	</div>
+</body>
+</html>

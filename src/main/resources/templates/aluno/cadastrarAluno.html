@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/materialize.min.css}"
+		media="screen,projection" />
+	<!--Let browser know website is optimized for mobile-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/styleAluno.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/styleAnimation.css}">
+	<meta charset="UTF-8" />
+	<title>Home | Boas Vindas!</title>
+</head>
+<body bgcolor="#90caf9">
+	<nav>
+	 <div class="nav-wrapper #7986cb #212121 grey darken-4">			
+		<a href="/ " class="brand-logo center" id="Logo"><i class="large material-icons">local_library</i>MindZone</a>
+		 <ul class="hide-on-med-and-down">
+        		<li><a href=""><i class="material-icons">search</i></a></li>
+      	</ul>  			
+	 </div>
+	 <ul id="slide-out" class="sidenav">
+      		<li><a class="sidenav-close" href="#!"><i class="material-icons">menu</i>Fechar Menu</a></li>
+      		<li><a class="sidenav-close" href="\ "><i class="material-icons">home</i>Home</a></li>
+      		<label style="padding-left:5px;  font-size:15px;">ALUNO</label>
+      		<li><a href="/aluno/cadastrar"><i class="material-icons">add_circle_outline</i>Cadastrar Aluno</a></li>
+      		<li><a href="/aluno/lista"><i class="material-icons">spellcheck</i>Alunos</a></li>
+ 		    <label style="padding-left:5px;  font-size:15px;">CURSO</label>
+ 		    <li><a href="/curso/cadastrar"><i class="material-icons">add_circle_outline</i>Cadastrar Curso</a></li>
+    		<li><a href="/curso/lista"><i class="material-icons">spellcheck</i>Cursos</a></li><hr>   		
+      		<li><a href="#!"><i class="material-icons">favorite_border</i>Sobre</a></li>        		
+  		</ul>
+	</nav>		
+  	<a href="" data-target="slide-out" class="sidenav-trigger #212121 grey darken-4" id="sideNav"><i class="material-icons">menu</i></a>
+	<div class="container">	 	        
+	  <div class="row">	
+	    <div class="container" id="container_imagem"> 
+	       <label id="texto"> CADASTRAR </label>
+           <img  class="materialboxed" th:src="@{/images/01_students.jpg}" id="alunos">
+         </div>
+	     <div class="col s12 m15">	              
+	       <div class="card-panel large">       
+     		 <!-- INICIO FORM -->		
+			  <div class="row">	
+   				<th:block th:include="mensagemValidacao"></th:block>	<!-- Mensagem -->		    			
+				 <form class="col s12" th:action=@{/cadastrar/aluno} method="post" id="Form">
+					<div class="row">
+						<div class="input-field col s6">
+							<i class="material-icons prefix">account_circle</i>
+							 <input id="icon_account_circle" type="text" name="nome" class="validate" maxlength="150"> <label
+								for="icon_account_circle">NOME</label>
+						</div>
+						<div class="input-field col s6">
+							<i class="material-icons prefix">fingerprint</i> <input
+								id="icon_fingerprint" type="text" name="cpf" class="validate" maxlength="11"> <label
+								for="icon_fingerprint">CPF</label>
+						</div>						
+						<div class="input-field col s6">
+						    <i class="material-icons prefix">email</i> <input
+							id="icon_emai" type="text" name="email" class="validate"> <label
+							for="icon_emai">EMAIL</label>		<br><br>	
+					
+							<div class="input-field col s6">	<!-- -CURSO -->								
+							 <i class="material-icons prefix" id="icon_book">book</i>
+							 <label for="icon_book" id="label_book" > SELECIONE CURSO</label>
+							 <select id="curso"  name="id_curso" onclick=testar()>
+   								 <option th:each="curso : ${curso}" th:value="${curso.codigo}" th:text="${curso.nome}" th:selected="${curso.codigo}"></option>
+   							 </select><br>
+   					       </div>									
+						</div>						
+						<div class="input-field col s6">
+							<i class="material-icons prefix">school</i> <input
+								id="icon_school" type="text" name="matricula" class="validate" maxlength="11"> <label
+								for="icon_school">MATRICULA</label>														
+						</div>												
+					 </div><!--class-row-end-->	
+					<button class="btn waves-effect waves-light btn-small" type="submit" name="action">adicionar
+   						<i class="material-icons right">send</i>
+  					</button>	  										
+				</form>		
+				<a href="/ ">
+				  <button class="btn waves-effect waves-light #f44336 red btn-small" name="action" id="button_cancelar">cancelar
+				  	<i class="material-icons large right">close</i>
+				  </button>
+				</a>								
+			</div><!--FIM CLASS C/ FORM -->				
+		</div><!-- class row CARD end -->	        
+	  </div><!-- class-card-panel teal end -->	  
+    </div><!-- class-col s12 m5 -end- -->
+    <ul class="circles" style= "z-index:-1px;">
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+   </ul>        
+  </div><!-- class-container-end -->	  
+  <footer class="page-footer #eceff1 blue-grey lighten-5">
+	<div class="footer-copyright  #212121 grey darken-4">
+		<div class="container center"> © 2022 Victória C. Belo 
+	      <a href="https://github.com/Victoria-Belo"><i style="padding:12px; font-size:24px" class="fa">&#xf09b;</i></a>
+	      </div>
+	    </div>
+  </footer>
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" th:src="@{/js/materialize.min.js}"></script>
+  <script type="text/javascript" th:src="@{/js/sideNav.js}"></script>
+  <script type="text/javascript">
+  	function testar(){
+  		var elemento = String(document.getElementById('curso').value);
+  	 	console.log(`item selecionado-> ` + elemento)
+  	}
+ 
+  </script>
+  
+</body>
+</html>

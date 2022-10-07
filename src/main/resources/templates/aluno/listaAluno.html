@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/materialize.min.css}"
+		media="screen,projection" />
+	<!--Let browser know website is optimized for mobile-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/styleAluno.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/styleAnimation.css}">
+	<meta charset="UTF-8" />
+	<title> Lista | Estudante </title>
+</head>
+
+<body bgcolor="#90caf9">
+	<nav>
+	 <div class="nav-wrapper  #212121 grey darken-4">			
+		<a href="/ " class="brand-logo center" id="Logo"><i class="large material-icons">local_library</i>MindZone</a>
+		 <ul class="hide-on-med-and-down">
+        		<li><a href=""><i class="material-icons">search</i></a></li>
+      	 </ul>  			
+	 </div>
+	   <ul id="slide-out" class="sidenav">
+      		<li><a class="sidenav-close" href="#!"><i class="material-icons">menu</i>Fechar Menu</a></li>
+      		<li><a class="sidenav-close" href="\ "><i class="material-icons">home</i>Home</a></li>
+      		<label style="padding-left:5px;  font-size:15px;">ALUNO</label>
+      		<li><a href="/aluno/cadastrar"><i class="material-icons">add_circle_outline</i>Cadastrar Aluno</a></li>
+      		<li><a href="/aluno/lista"><i class="material-icons">spellcheck</i>Alunos</a></li>
+ 		    <label style="padding-left:5px;  font-size:15px;">CURSO</label>
+ 		    <li><a href="/curso/cadastrar"><i class="material-icons">add_circle_outline</i>Cadastrar Curso</a></li>
+    		<li><a href="/curso/lista"><i class="material-icons">spellcheck</i>Cursos</a></li><hr>   		
+      		<li><a href="#!"><i class="material-icons">favorite_border</i>Sobre</a></li>        		
+  	   </ul>
+	</nav>	
+  	<a href="" data-target="slide-out" class="sidenav-trigger #212121 grey darken-4" id="sideNav"><i class="material-icons">menu</i></a>
+	<div class="container">	 	        
+	  <div class="row">	
+	   <div class="container" id="container_imagem"> 
+	       <label id="textoLista"> NOSSOS ALUNOS </label>
+           <img  class="materialboxed" th:src="@{/images/01_students.jpg}" id="alunos">
+         </div>
+	     <div class="col s12 m15">	              
+	       <div class="card-panel large">       
+     		 <table class="highlight bordered" >
+     			<thread>
+     			  <th>NOME</th>	
+     			  <th>CPF</th>	
+     			  <th>EMAIL</th>	
+     			  <th>MATRICULA</th>	
+     			  <th>AÇÕES</th>
+     			</thread>
+     			<tbody th:each="aluno : ${aluno}">
+     			  <!-- <td><a th:href= "${#mvc.url('AR#listaAluno').arg(0, aluno.cod)).build()}"></a></td>-->
+     			  <td><span th:text="${aluno.nome}"></span></td>
+     			  <td><span th:text="${aluno.cpf}"></span></td>
+     			  <td><span th:text="${aluno.email}"></span></td>
+     			  <td><span th:text="${aluno.matricula}"></span></td>
+     			  <td>  <a class="" th:href="${(#mvc.url('AC#updateAluno').arg(0, aluno.codigo)).build()}"><i class="small material-icons" id="i_edit">edit</i></a>
+     			  		<a class="" onclick="verificar()" id="deletar" th:href="${(#mvc.url('AC#excluirAluno').arg(0, aluno.codigo)).build()}"> <i class="small material-icons "  id="i_delete">delete</i></a>
+     			  </td>			
+     			</tbody>	 	
+     		 </table><br>       		  
+			 <a href="/ ">
+			  <button class="btn waves-effect waves-light #f44336 red btn-small" name="action" style="top:30px; ">VOLTAR
+			  	<i class="material-icons large right">keyboard_backspace</i>
+			  </button>
+			 </a>	
+ 		 	<div aria-label="Pagination-sm #4a148c purple darken-4" th:if="${aluno.totalPages gt 0}" th:disabled="${aluno.size eq 1}">
+	          <ul class="pagination center">
+				   <li class="page-item" th:classappend="${aluno.number eq 0} ? 'disabled'" >
+		            <a class="page-link"
+		               th:href="@{/aluno/lista?page={id}(id=${aluno.number lt 2 ? 1 : aluno.number})}"
+		               aria-label="Previous" title="Anterior" data-toggle="tooltip">              
+				    <i class="material-icons">chevron_left</i></a></li>
+				    <li class="page-item" th:classappend="${i eq aluno.number + 1} ? 'active'"
+		            th:each="i : ${#numbers.sequence( 1, aluno.totalPages, 1)}">
+		            <a class="page-link" th:href="@{/aluno/lista?page={id}(id=${i})}" th:text="${i}"
+		               th:title="${'Page '+ i}" data-toggle="tooltip">1</a></li>
+				    
+				    <li class="page-item" th:classappend="${aluno.number + 1 eq aluno.totalPages} ? 'disabled'">
+		            <a class="page-link" th:if="${aluno.number + 1 < aluno.totalPages}"
+		               th:href="@{/aluno/lista?page={id}(id=${aluno.number + 2})}"
+		               aria-label="Next" title="Próximo" data-toggle="tooltip"><i class="material-icons">chevron_right</i></a></li>
+	  	       </ul>
+	          </div>  											
+			</div>			 		
+		 </div><!-- class row CARD end -->	        
+	   </div><!-- class-card-panel teal end -->
+    </div><!-- class-col s12 m5 -end- -->
+    <ul class="circles" style= "z-index:-1px;">
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+         </ul>		
+  <!-- class-container-end -->	
+  <footer class="page-footer #eceff1 blue-grey lighten-5">
+	<div class="footer-copyright  #212121 grey darken-4">
+		<div class="container center">
+			  © 2022 Victória C. Belo 
+			  <a href="https://github.com/Victoria-Belo"><i style="padding:12px; font-size:24px" class="fa">&#xf09b;</i></a>
+		</div>			
+	 </div>
+  </footer>
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" th:src="@{/js/materialize.min.js}"></script>
+  <script type="text/javascript" th:src="@{/js/sideNav.js}"></script>  
+</body>
+</html>

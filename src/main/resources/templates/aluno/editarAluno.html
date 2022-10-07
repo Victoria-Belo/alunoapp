@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+	
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"
+		media="screen,projection" />
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/styleAluno.css">
+	
+	<!-- POR SER MVC PAGE, PRECISEI UTILIZAR DESSA FORMA PARA FUNCIONAR  -->
+	<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+	
+	<link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" />	
+	<link rel="stylesheet" th:href="@{/css/materialize.min.css}" media="screen,projection"/>	
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/css/styleAluno.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/styleAnimation.css}">	
+	<meta charset="UTF-8" />	
+	<title> Alterar | Estudante </title>	
+</head>
+
+<body bgcolor="#90caf9">
+	<nav>
+	  <div class="nav-wrapper  #212121 grey darken-4">			
+		 <a href="/ " class="brand-logo center"><i class="large material-icons">local_library</i>MindZone</a>
+	  </div>
+	</nav>		
+	<div class="container">	 	        
+	  <div class="row">	
+	    <div class="container" id="container_imagem"> 
+	       <label id="textoLista"> ALTERAR ALUNO </label>
+           <img  class="materialboxed" th:src="@{/images/01_students.jpg}" id="alunos">
+         </div>
+	     <div class="col s12 m15">	              
+	       <div class="card-panel large">       
+     		 <!-- INICIO FORM -->		
+			  <div class="row">	
+   				<th:block th:include="mensagemValidacao"></th:block>	<!-- Mensagem -->	
+				
+				<form th:action="@{/editarAluno/{codigo}(codigo = ${aluno.codigo})}" 
+				  method="post"  th:each="aluno : ${aluno}">				
+					 <b>NOME</b> <input type="text" th:field="*{aluno.nome}" maxlength="150"/> 	 
+					 		
+					 <div class="row">					
+						<div class="input-field col s4">
+						    <b>CPF</b> <input type="text" th:field="*{aluno.cpf}"  maxlength="11"/>					
+							
+							<b  style="margin-left:5px;"><br>SELECIONE CURSO</b>
+							<select id="curso"  name="id_curso" style="margin-left:-2px;">
+    								 <option th:each="curso : ${curso}" th:value="${curso.codigo}" th:text="${curso.nome}" th:selected="${curso.codigo}"></option>
+   							</select><br>    								
+						</div>
+						<div class="input-field col s4">
+							<b>EMAIL</b> <input type="email" th:field="*{aluno.email}" /> 				
+										
+						</div>
+						<div class="input-field col s3">
+						   <b>MATRICULA</b> <input type="text" th:field="*{aluno.matricula}" maxlength="11" /> 
+						</div>
+					</div><!-- fim-row -->				
+					<button class="btn waves-effect waves-light btn-small" type="submit" name="action">salvar
+   						<i class="material-icons right">send</i>
+  					</button>	  										
+				</form>		
+				<a href="/aluno/lista ">
+				  <button class="btn waves-effect waves-light #f44336 red btn-small" name="action" id="button_cancelar">cancelar
+				  	<i class="material-icons large right">close</i>
+				  </button>
+				</a>								
+			</div><!--FIM CLASS C/ FORM -->				
+		</div><!-- class row CARD end -->	        
+	  </div><!-- class-card-panel teal end -->
+    </div><!-- class-col s12 m5 -end- -->
+    <ul class="circles" style= "z-index:-1px;">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>		
+  </div><!-- class-container-end -->	
+  <footer class="page-footer #eceff1 blue-grey lighten-5">
+	<div class="footer-copyright  #212121 grey darken-4">
+		<div class="container center">
+		  © 2022 Victória C. Belo 
+		  <a href="https://github.com/Victoria-Belo"><i style="padding:12px; font-size:24px" class="fa">&#xf09b;</i></a>
+		</div>		
+	</div>
+  </footer>
+	<!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+</html>
